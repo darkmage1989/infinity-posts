@@ -1,11 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Data } from '../../../interfaces/DataInterface';
-import { useGetPostsApiQuery } from "../../redux/apis/postsApi";
+import style from "./PostPage.module.css";
+import { useGetPostByIdApiQuery } from "../../redux/apis/postsApi";
+import Button from "../../shared/Button/Button";
 
 const UserPage = () => {
   const navigate = useNavigate();
-  const { data, error, isLoading } = useGetPostsApiQuery(null);
   const params = useParams();
+  const id = params.id;
+  const { data, error, isLoading } = useGetPostByIdApiQuery({ id });
+  const handleClick = () => {
+    navigate(`/`);
+  };
 
   if (isLoading) {
     return <span>Загрузка</span>;
@@ -25,11 +30,14 @@ const UserPage = () => {
       return <div>{error.message}</div>;
     }
   }
-  const userPage: Data = data?.find(
-    (user: Data) => user.id === Number(params.id)
+
+  return (
+    <div className={style.post__box}>
+      <h2>{`№${data.id}  ${data.title}`}</h2>
+      <span>{data.body}</span>
+      <Button onClick={handleClick} name={"Назад"} />
+    </div>
   );
-  
-  return <div>{userPage.id}</div>;
 };
 
 export default UserPage;

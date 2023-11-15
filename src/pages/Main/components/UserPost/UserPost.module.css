@@ -1,7 +1,14 @@
-.post__box {
-  white-space: nowrap; /* Текст не переносится */
-  overflow: hidden; /* Обрезаем всё за пределами блока */
-  text-overflow: ellipsis; /* Добавляем многоточие */
+.post__text__box {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
-.description {
+.post__box {
+  padding: 20px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }

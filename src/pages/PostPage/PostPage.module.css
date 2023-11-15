@@ -1,0 +1,8 @@
+.post__box {
+    margin-top: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 200px;
+    gap: 30px;
+}

@@ -1,9 +1,11 @@
+import style from './Button.module.css'
 interface ButtonProps {
-    name:string
+    name:string;
+    onClick: () => void;
 }
  
-const Button = ({name}: ButtonProps) => {
-    return ( <button>{name}</button> );
+const Button = ({name, onClick}: ButtonProps) => {
+    return ( <button onClick={onClick} className={style.button}>{name}</button> );
 }
  
 export default Button;
