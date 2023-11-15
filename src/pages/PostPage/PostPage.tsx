@@ -1,8 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import style from "./PostPage.module.css";
-import { useGetPostByIdApiQuery } from "../../redux/apis/postsApi";
-import Button from "../../shared/Button/Button";
-
+import { useGetPostByIdApiQuery } from "../../app/shared/apis/postsApi";
+import Button from '../../app/shared/ui/Button/Button';
 const UserPage = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -13,7 +12,7 @@ const UserPage = () => {
   };
 
   if (isLoading) {
-    return <span>Загрузка</span>;
+    return <div className={style.post__box}>Загрузка</div>;
   }
 
   if (error) {
@@ -21,13 +20,13 @@ const UserPage = () => {
       const message =
         "error" in error ? error.error : JSON.stringify(error.data);
       return (
-        <div>
+        <div className={style.post__box}>
           <div>An error has occurred:</div>
           <div>{message}</div>
         </div>
       );
     } else {
-      return <div>{error.message}</div>;
+      return <div className={style.post__box}>{error.message}</div>;
     }
   }
 

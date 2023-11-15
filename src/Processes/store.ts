@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { postsApi } from "./apis/postsApi";
+import { postsApi } from "../app/shared/apis/postsApi";
 export const store = configureStore({
   reducer: {
     [postsApi.reducerPath]: postsApi.reducer,

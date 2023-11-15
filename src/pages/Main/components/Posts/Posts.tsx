@@ -1,31 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Data } from "../../../../../interfaces/DataInterface";
 import { useInView } from "react-intersection-observer";
-import { useGetPostsApiQuery } from "../../../../redux/apis/postsApi";
+import { useGetPostsApiQuery } from "../../../../app/shared/apis/postsApi";
 import UserPost from "../UserPost/UserPost";
 const Posts = () => {
-  const [fearstPost, setFearstPost] = useState(0);
+  const [firstPost, setFirstPost] = useState(0);
   const { data, isLoading, error } = useGetPostsApiQuery({
-    start: fearstPost,
+    start: firstPost,
   });
   const isEmptyList = !isLoading && !data;
-  const { ref: firstPost, inView: inViewFirstPost } = useInView({
+  const { ref: refFirstPost, inView: inViewFirstPost } = useInView({
     threshold: 0,
   });
 
-  const { ref: lastPost, inView: inViewLastPost } = useInView({
+  const { ref: refLastPost, inView: inViewLastPost } = useInView({
     threshold: 0.5,
   });
 
   useEffect(() => {
     if (inViewFirstPost) {
-      setFearstPost((prev) => (prev > 0 ? prev - 5 : prev));
+      setFirstPost((prev) => (prev > 0 ? prev - 5 : prev));
     }
   }, [inViewFirstPost]);
 
   useEffect(() => {
     if (inViewLastPost) {
-      setFearstPost((prev) => prev + 5);
+      setFirstPost((prev) => prev + 5);
     }
   }, [inViewLastPost]);
   if (isLoading) {
@@ -53,11 +53,11 @@ const Posts = () => {
     <>
       {data.map((post: Data, index: number, arr: []) =>
         index === 0 ? (
-          <div key={post.id} ref={firstPost}>
+          <div key={post.id} ref={refFirstPost}>
             <UserPost post={post} />
           </div>
         ) : index === arr.length - 1 ? (
-          <div key={post.id} ref={lastPost}>
+          <div key={post.id} ref={refLastPost}>
             <UserPost post={post} />
           </div>
         ) : (

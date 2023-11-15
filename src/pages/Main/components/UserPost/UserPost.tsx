@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { Data } from "../../../../../interfaces/DataInterface";
-import Button from "../../../../shared/Button/Button";
+import Button from "../../../../app/shared/ui/Button/Button";
 import style from "./UserPost.module.css";
 interface UserPostProps {
   post: Data;
