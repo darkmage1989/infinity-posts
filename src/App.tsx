@@ -3,7 +3,7 @@ import AppRoutes from './Rourtes';
 function App() {
   return (
     <main className="App">
-      <AppRoutes />;
+      <AppRoutes />
       </main>
       
 )}
