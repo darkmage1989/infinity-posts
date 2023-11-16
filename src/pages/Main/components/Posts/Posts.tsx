@@ -19,13 +19,13 @@ const Posts = () => {
 
   useEffect(() => {
     if (inViewFirstPost) {
-      setFirstPost((prev) => (prev > 0 ? prev - 2 : prev));
+      setFirstPost((prev) => (prev > 0 ? prev - 3 : prev));
     }
   }, [inViewFirstPost]);
 
   useEffect(() => {
     if (inViewLastPost) {
-      setFirstPost((prev) => prev + 2);
+      setFirstPost((prev) => prev + 3);
     }
   }, [inViewLastPost]);
   if (isLoading) {
