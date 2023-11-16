@@ -14,18 +14,18 @@ const Posts = () => {
   });
 
   const { ref: refLastPost, inView: inViewLastPost } = useInView({
-    threshold: 0.5,
+    threshold: 1,
   });
 
   useEffect(() => {
     if (inViewFirstPost) {
-      setFirstPost((prev) => (prev > 0 ? prev - 1 : prev));
+      setFirstPost((prev) => (prev > 0 ? prev - 2 : prev));
     }
   }, [inViewFirstPost]);
 
   useEffect(() => {
     if (inViewLastPost) {
-      setFirstPost((prev) => prev + 1);
+      setFirstPost((prev) => prev + 2);
     }
   }, [inViewLastPost]);
   if (isLoading) {
